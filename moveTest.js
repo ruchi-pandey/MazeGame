@@ -9,6 +9,7 @@ var imageRepo= new function(){
   let bgURL="maze.jpg";
   this.bg =new Image();
   this.bg.src=bgURL;
+  //https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image
   this.bg.crossOrigin = "Anonymous";
   
   }  
@@ -78,12 +79,86 @@ var imageRepo= new function(){
     }
     
     drawFrame(0,0, xPos, yPos);
+    mazeCollision();
     
-    const imageData = bgCtx.getImageData(0,0,xPos,yPos);
-    console.log(imageData);
 
   };
 }
   document.onkeydown = playerMovement;
-  
+
+  function mazeCollision(){
+
+    var pixels = bgCtx.getImageData(0,0,xPos,yPos);
+    //##fbfb05
+    //rgba(238,170,51,1)
+    console.log(pixels);
+
+    var spriteSpot = {
+      x:xPos,
+      y:yPos,
+      width:16*1.5,
+      height:18*1.5,
+      draw: drawFrame(0,0,420,224),
+      touchingColor: function(r,g,b){
+        for(var i=0;i<pixels.data.length;i+=4){
+          if(
+              r== 238 &&
+              g == 170 &&
+              b == 51 
+              
+          ){
+            ctx.clearRect(this.x, this.y, player.width, player.height);
+          }
+      }
+      drawFrame(0,0,420,224);
+
+    }
+
+    //if ()
+
+
+  };
+
+/*
+var box = {
+    x: 5,
+    y: 19,
+    width: 10,
+    height: 5,
+    draw: function(ctx){...draw Box on context "ctx"},
+    touchingColor: function(ctx,r,g,b){
+        var data = ctx.getImageData(this.x,this.y,this.width,this.height);
+        for(var i=0;i<data.length;i+=4){
+            if(
+                data[i+0]==r&&
+                data[i+1]==g&&
+                data[i+2]==b
+            ){
+                return true;
+            }
+        }
+        return false;
+    }
+};
+
+
+    //TUTORIAL :- https://www.youtube.com/watch?v=5tMX53tp1Io&t=390s
+
+    
+
+      for(var i=0, len=pixels.data.length;i<len; i+=4){
+
+        var red = pixels.data[i];
+        var green = pixels.data[i+1];
+        var blue = pixels.data[i+2];        
+    }
+
+    */
+  }
+
+  /*
+
+  */
+
+  //python -m http.server
   
