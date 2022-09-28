@@ -4,12 +4,14 @@ var imageRepo= new function(){
   this.player =new Image();
   this.player.src='https://opengameart.org/sites/default/files/Green-Cap-Character-16x18.png';
   
+  
+  //this.bg.src="maze.jpg";
+  let bgURL="maze.jpg";
   this.bg =new Image();
-  this.bg.src="maze.jpg";
+  this.bg.src=bgURL;
+  this.bg.crossOrigin = "Anonymous";
   
-  }
-
-  
+  }  
 
   let player = document.getElementById('player');
   let ctx=player.getContext('2d');
@@ -36,12 +38,12 @@ var imageRepo= new function(){
   
   function init(){
     this.background();
-    this.drawFrame(0,0,165,39)
+    this.drawFrame(0,0,420,224)
     this.playerMovement();
   }
   
-  xPos=165;
-  yPos=50;
+  xPos=420;
+  yPos=224;
   
   document.addEventListener('keydown',playerMovement) 
   
@@ -56,29 +58,32 @@ var imageRepo= new function(){
   
     if(x == 39){
       //right
-      xPos+=16;
+      xPos+=2;
     }
   
     if(x == 37){
       //left
-      xPos-=16;
+      xPos-=2;
     }
   
     if(x == 38){
       //up
-      yPos-=9;
+      yPos-=2;
     }
   
     if(x == 40){
       //down
       e.preventDefault();
-      yPos+=9;
+      yPos+=2;
     }
-    console.log(x);
+    
     drawFrame(0,0, xPos, yPos);
+    
+    const imageData = bgCtx.getImageData(0,0,xPos,yPos);
+    console.log(imageData);
+
   };
 }
-//ctx.clearRect(player.x, player.y, player.width, player.height);
   document.onkeydown = playerMovement;
-  //document.onkeyup = playerMovement
+  
   

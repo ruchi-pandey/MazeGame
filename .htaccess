@@ -1,0 +1,8 @@
+<IfModule mod_setenvif.c>
+    <IfModule mod_headers.c>
+      <FilesMatch "\.(avifs?|bmp|cur|gif|ico|jpe?g|jxl|a?png|svgz?|webp)$">
+        SetEnvIf Origin ":" IS_CORS 
+        Header always set Access-Control-Allow-Origin "index.html" env=IS_CORS
+      </FilesMatch>
+    </IfModule>
+  </IfModule>
