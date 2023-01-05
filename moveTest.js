@@ -39,11 +39,11 @@ var imageRepo= new function(){
     
     //drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
     ctx.drawImage(imageRepo.player,
-                   frameX* width, frameY * height, width, height,
+                   frameX * width, frameY * height, width, height,
                    canvasX, canvasY, scaledWidth, scaledHeight); 
-    spriteBox();                
+    //spriteBox();                
     }
-
+/*
   function spriteBox(){
 
     
@@ -54,14 +54,12 @@ var imageRepo= new function(){
     
     
   }
-  
+  */
   function init(){
     this.background();
     this.drawFrame(0,0,418,224)
     this.playerMovement();
   }
-  
-  
   
   document.addEventListener('keydown',playerMovement) 
   
@@ -72,16 +70,7 @@ var imageRepo= new function(){
       this.x=xPos;
       this.y=yPos;
       
-      ctx.clearRect(0, 0, player.width, player.height);
-      //mazeCollision();
-      /*
-      if(mazeCollision()){
-        console.log("Maze Detected!"); 
-      }else{
-        console.log("Maze not Detected"); 
-      }
-*/
-      //console.log(this.x,this.y)      
+      ctx.clearRect(0, 0, player.width, player.height);    
   
     if(x == 39){
       //right
@@ -106,12 +95,10 @@ var imageRepo= new function(){
     
     drawFrame(0,0, xPos, yPos);
     
-    
-
-
   };
 }
   document.onkeydown = playerMovement;
+
   
 /*
   function mazeCollision(){
